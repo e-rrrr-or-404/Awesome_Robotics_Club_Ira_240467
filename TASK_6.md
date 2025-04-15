@@ -2,7 +2,7 @@
 ## Part A: Detecting Which Piece Moves From Which Square to Which
 
 ### Objective
-To determine the movement of chess pieces (from which square to which, and which specific piece) **without using computer vision, RFID, or magnetic sensors**. The proposed solution uses **capacitive sensing combined with passive profiling** of chess pieces.
+To determine the movement of chess pieces (from which square to which, and which specific piece) **without using computer vision, RFID, or magnetic sensors**. The proposed solution uses **capacitive sensing** of chess pieces.
 
 ---
 
@@ -64,8 +64,8 @@ Pieces have varying capacitive footprints. For example:
 
 Pieces may use materials like:
 - Conductive foil
-- Graphite
-- Embedded metal discs
+- Conductive Graphite
+
 
 ---
 
@@ -96,7 +96,6 @@ int identifyPiece(int cap) {
 
 ### Advantages
 - No computer vision, RFID, or magnets required
-- Robust to lighting and physical misalignment
 - Easy to manufacture with low-cost materials
 
 ### Limitations & Solutions
@@ -128,12 +127,9 @@ This reduces the pin requirement from 64 to **16 pins** (8 rows + 8 columns).
 #### sample multiplexer - CD74HC4067
 - A multiplexer (MUX) is a digital switch that selects one input from many and forwards it to a single output line, based on selector (address) inputs.
 - For example, a 16-channel analog multiplexer like the CD74HC4067 has:
-
-    16 I/O channels (S0–S15)
-
-    4 selector pins (A0–A3)
-
-    1 common signal pin (SIG)
+ -16 I/O channels (S0–S15)
+ -4 selector pins (A0–A3)
+ -1 common signal pin (SIG)
 
 - By setting the selector pins to a binary value, you choose which channel is connected to the SIG pin.
 
@@ -146,9 +142,9 @@ This reduces the pin requirement from 64 to **16 pins** (8 rows + 8 columns).
 
 -divide our 16 total lines (8 rows + 8 columns) into two sets of 8, and use one 16:1 multiplexer for each set:
 
-    MUX 1 handles all 8 rows
+-MUX 1 handles all 8 rows
 
-    MUX 2 handles all 8 columns
+-MUX 2 handles all 8 columns
 
 -Both multiplexers share the same 4 selector pins, and each has its own signal line (connected to a microcontroller input).
 
@@ -166,6 +162,7 @@ Total: 6 microcontroller pins
 
 Arduino Pseudo-Code:
 
+```cpp
 int baseValues[8][8];      
 int currentValues[8][8];   
 
@@ -202,6 +199,6 @@ void detectMove() {
     Serial.print((char)('A' + toSquare[1])); Serial.println(8 - toSquare[0]);
   }
 }
-
+```
 
 
