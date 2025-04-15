@@ -1,0 +1,1 @@
+As a chess beginner, this project immediately caught my attention. I don’t consider myself the best coder, so the hands-on nature of this system felt approachable and exciting. I recently saw a similar setup using piezoelectric sensors, which made me curious. The tasks seemed challenging but very fun to explore.
